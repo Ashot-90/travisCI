@@ -3,6 +3,8 @@ services:
 
 before_install:
   - docker build -t travis-ci.test .
+  - echo $PWD
+  - echo $TRAVIS_BUILD_DIR
   
 script:
   - docker run -it travis-ci.test
