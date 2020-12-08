@@ -1,6 +1,8 @@
 FROM ubuntu:latest
 MAINTAINER Ashot Avagyan
 
+ARG TRAVIS_BUILD_DIR
+
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN echo "AAAAAAAAAAAAAAA PWD is -- $PWD"
