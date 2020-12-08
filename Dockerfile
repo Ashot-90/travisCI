@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN echo "AAAAAAAAAAAAAAA PWD is -- $PWD"
 RUN echo "AAAAAAAAAAAAAAA TRAVIS_BUILD_DIR is -- $TRAVIS_BUILD_DIR"
-RUN echo "AAAAAAAAAAAAAAA ls is -- $(ls)"
+RUN echo "AAAAAAAAAAAAAAA ls is -- $(ls $TRAVIS_BUILD_DIR/ta_assignment)"
 RUN apt-get update
 RUN apt-get install npm -y
 RUN apt-get install python3-pip -y
