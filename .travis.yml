@@ -2,9 +2,7 @@ services:
   - docker
 
 before_install:
-  - echo "AAAAAAAAAAAAA PWD is -- $PWD"
-  - echo "AAAAAAAAAAAAA TRAVIS_BUILD_DIR is -- $TRAVIS_BUILD_DIR"
-  - docker build -t travis-ci.test --build-arg TRAVIS_BUILD_DIR=$TRAVIS_BUILD_DIR .
+  - docker build -t travis-ci.test .
   
 script:
   - docker run -it travis-ci.test
