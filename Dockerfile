@@ -5,9 +5,8 @@ ARG TRAVIS_BUILD_DIR
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN echo "AAAAAAAAAAAAAAA PWD is -- $PWD"
-RUN echo "AAAAAAAAAAAAAAA TRAVIS_BUILD_DIR is -- $TRAVIS_BUILD_DIR"
-RUN echo "AAAAAAAAAAAAAAA ls is -- $(ls $TRAVIS_BUILD_DIR)"
+RUN echo "AAAAAAAAAAAAAAA $(find . -name package.json)"
+RUN echo "BBBBBBBBBBBBBBB $(find / -name package.json)"
 RUN apt-get update
 RUN apt-get install npm -y
 RUN apt-get install python3-pip -y
