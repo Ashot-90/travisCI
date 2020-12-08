@@ -10,7 +10,7 @@ RUN pip3 install --upgrade pip
 # cypress dependencies
 RUN apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb -y
 
-WORKDIR ta_assignment
+WORKDIR $TRAVIS_BUILD_DIR/ta_assignment
 RUN npm install
 RUN npm audit fix
 RUN pip install $(cat api/requirements.txt | grep -v sqlite3 | tr '\n' ' ')
