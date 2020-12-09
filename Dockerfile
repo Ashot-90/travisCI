@@ -17,7 +17,7 @@ RUN npm install
 RUN npm audit fix
 #RUN npm run -s start-api
 #RUN npm start
-RUN bash -c "npm run -s start-api &"
-RUN bash -c "npm start &" && sleep 5
+RUN nohup bash -c "npm run -s start-api &"
+RUN nohup bash -c "npm start &"
 
 CMD ./node_modules/cypress/bin/cypress run
