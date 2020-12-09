@@ -1,4 +1,4 @@
-FROM cypress/browsers:node12.16.2-chrome81-ff75
+FROM cypress/included:3.2.0
 MAINTAINER Ashot Avagyan
 
 ENV DEBIAN_FRONTEND=noninteractive
