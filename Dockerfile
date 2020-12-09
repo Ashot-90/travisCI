@@ -1,10 +1,10 @@
-FROM cypress/base:8
+FROM cypress/browsers:chrome69
 MAINTAINER Ashot Avagyan
 
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
-RUN apt-get install python3 python3-pip -y
+RUN apt-get install python3-pip -y
 RUN pip3 install --upgrade pip
 RUN pip3 install flask
 
