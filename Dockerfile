@@ -12,10 +12,9 @@ RUN pip3 install flask
 RUN apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb -y
 
 COPY ta_assignment /tmp/ta_assignment
+COPY bring_up_and_run_tests.sh bring_up_and_run_tests.sh
 WORKDIR /tmp/ta_assignment
 RUN npm install
 RUN npm audit fix
-RUN nohup bash -c "npm run -s start-api &"
-RUN nohup bash -c "npm start &" && sleep 5
 
-CMD ./node_modules/cypress/bin/cypress run
+CMD ./bring_up_and_run_tests.sh
