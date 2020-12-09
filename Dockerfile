@@ -15,9 +15,7 @@ COPY ta_assignment /tmp/ta_assignment
 WORKDIR /tmp/ta_assignment
 RUN npm install
 RUN npm audit fix
-#RUN npm run -s start-api
-#RUN npm start
 RUN nohup bash -c "npm run -s start-api &"
-RUN nohup bash -c "npm start &"
+RUN nohup bash -c "npm start &" && sleep 5
 
 CMD ./node_modules/cypress/bin/cypress run
