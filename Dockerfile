@@ -1,8 +1,6 @@
 FROM ubuntu:latest
 MAINTAINER Ashot Avagyan
 
-ARG TRAVIS_BUILD_DIR
-
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update
@@ -18,7 +16,7 @@ RUN chmod +x /tmp/ta_assignment/bring_up_and_run_tests.sh
 WORKDIR /tmp/ta_assignment
 RUN npm install
 RUN npm audit fix
-RUN pip install $(cat api/requirements.txt | grep -v sqlite3 | tr '\n' ' ')
-ENV FLASK_APP=api/app
+RUN npm start
+RUN npm run -s start-api
 
-CMD ./bring_up_and_run_tests.sh
+CMD ./node_modules/cypress/bin/cypress run
