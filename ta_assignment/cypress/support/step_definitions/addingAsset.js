@@ -28,7 +28,7 @@ Then('I see validation error message', () => {
     cy.get('@textbox')
     .should(($textbox) => {
         expect($textbox.get(0).checkValidity()).to.equal(false);
-        expect($textbox.get(0).validationMessage).to.equal('Please match the format requested.');
+        expect($textbox.get(0).validationMessage).to.equal('Please match the requested format.');
     });
 });
 
