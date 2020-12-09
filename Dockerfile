@@ -1,4 +1,4 @@
-FROM cypress/included:3.2.0
+FROM cypress/base:8
 MAINTAINER Ashot Avagyan
 
 ENV DEBIAN_FRONTEND=noninteractive
