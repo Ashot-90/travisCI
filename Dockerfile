@@ -12,7 +12,5 @@ COPY ta_assignment /tmp/ta_assignment
 WORKDIR /tmp/ta_assignment
 COPY bring_up_and_run_tests.sh bring_up_and_run_tests.sh
 RUN chmod +x ./bring_up_and_run_tests.sh
-RUN npm install
-RUN npm audit fix
 
 CMD ./bring_up_and_run_tests.sh
