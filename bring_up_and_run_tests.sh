@@ -4,4 +4,4 @@ npm audit fix
 npm run -s start-api &
 npm start &
 sleep 10
-./node_modules/cypress/bin/cypress run
+$(npm bin)/cypress run
