@@ -1,4 +1,10 @@
 version: 2.0
+workflows:
+  my-workflow:
+    jobs:
+      - machine-job:
+          context:
+            - docker-hub-creds
 jobs:
   build:
     docker:
