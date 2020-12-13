@@ -1,12 +1,11 @@
 version: 2.1
-
 jobs:
   build:
     docker:
       - image: ashot90docker/image:latest
         auth:
-          username: $DOCKER_USER
-          password: $DOCKER_PSW
+          username: $DOCKER_HUB_USER
+          password: $DOCKER_HUB_PSW
     steps:
       - checkout
       - run:
