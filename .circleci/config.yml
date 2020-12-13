@@ -1,8 +1,13 @@
 version: 2.1
+workflows:
+  version: 2.0
+  my-workflow:
+    jobs:
+      - build:
+          context:
+            - docker-hub-creds
 jobs:
   build:
-    context:
-       - docker-hub-creds
     docker:
       - image: ashot90docker/myimage:latest
         auth:
