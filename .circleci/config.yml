@@ -1,0 +1,22 @@
+version: 2.0
+jobs:
+  build:
+    docker:
+      - image: ashot90docker/image:latest
+        auth:
+          username: $DOCKER_USER
+          password: $DOCKER_PSW
+    steps:
+      - checkout
+      - run:
+        name: build_and_push_image
+        command: docker build -t travis-ci.test . && docker push ashot90docker/image:latest
+      - run:
+        name: pull_image
+        command: docker pull ashot90docker/image:latest
+      - run:
+        name: run_tests_chrome
+        command: docker run --env BROWSER=chrome -it ashot90docker/image:latest
+      - run:
+        name: run_tests_ff
+        command: docker run --env BROWSER=firefox -it ashot90docker/image:latest
