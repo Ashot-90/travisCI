@@ -21,9 +21,3 @@ jobs:
       - run:
           name: run_tests_ff
           command: docker run --env BROWSER=firefox -it ashot90docker/image:latest
-workflows:
-  my-workflow:
-    jobs:
-      - machine-job:
-          context:
-            - docker-hub-creds
