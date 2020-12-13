@@ -1,12 +1,11 @@
-
 workflows:
-  version: 2
+  version: 2.0
   my-workflow:
     jobs:
       - build:
           context:
             - docker-hub-creds
-version: 2.1
+
 jobs:
   build:
     docker:
@@ -28,5 +27,3 @@ jobs:
       - run:
           name: run_tests_ff
           command: docker run --env BROWSER=firefox -it ashot90docker/myimage:latest
-
-            
