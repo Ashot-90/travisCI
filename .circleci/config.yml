@@ -9,7 +9,7 @@ workflows:
 jobs:
   build:
     docker:
-      - image: ashot90docker/myimage:latest
+      - image: docker:17.05.0-ce-git
         auth:
           username: $DOCKER_HUB_USER
           password: $DOCKER_HUB_PSW
@@ -17,7 +17,7 @@ jobs:
       - checkout
       - run:
           name: build_and_push_image
-          command: docker build -t travis-ci.test . && docker push ashot90docker/myimage:latest
+          command: docker build -t travis-ci.test . && echo "$DOCKER_HUB_PSW" | docker login -u $DOCKER_HUB_USER --password-stdin && docker push ashot90docker/myimage:latest
       - run:
           name: pull_image
           command: docker pull ashot90docker/myimage:latest
