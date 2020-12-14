@@ -1,4 +1,4 @@
-# travisCI
+# TravisCI and CircleCI integration repo
 
 This repository has been integrated with Travis CI and Circle CI, so every commit here will trigger a job under mentioned CI tools.
 
