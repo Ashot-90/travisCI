@@ -7,9 +7,9 @@ jobs:
       - checkout
       - run: |
          if [ "${CIRCLE_BRANCH}" == "docker_image_update" ]; then
-         echo $DOCKER_HUB_PSW | docker login -u $DOCKER_HUB_USER --password-stdin
-         docker build -t ashot90docker/myimage:latest . 
-         docker push ashot90docker/myimage:latest
+            docker login -u $DOCKER_HUB_USER -p $DOCKER_HUB_PSW
+            docker build -t ashot90docker/myimage:latest . 
+            docker push ashot90docker/myimage:latest
          fi
       - run:
           name: pull_image
