@@ -1,19 +1,27 @@
-
-version: 2.1
+version: 2
 jobs:
   build:
-    docker:
-      - image: docker:17.05.0-ce-git
+    machine:
+      image: ubuntu-2004:202010-01
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 19.03.13
       - run:
-          name: build_image
-          command: docker build -t circle-ci.test .
+          name: build_push_image
+          command: |
+             if [ "${CIRCLE_BRANCH}" == "docker_image_update" ]; then
+                echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USER --password-stdin
+                docker build -t ashot90docker/myimage:latest .
+                docker push ashot90docker/myimage:latest
+             fi
+      - run:
+          name: pull_image
+          command: |
+              if [ "${CIRCLE_BRANCH}" != "docker_image_update" ]; then
+                 docker pull ashot90docker/myimage:latest
+              fi
       - run:
           name: run_tests_chrome
-          command: docker run --env BROWSER=chrome -it circle-ci.test
+          command: docker run --env BROWSER=chrome -it ashot90docker/myimage:latest
       - run:
           name: run_tests_ff
-          command: docker run --env BROWSER=firefox -it circle-ci.test
+          command: docker run --env BROWSER=firefox -it ashot90docker/myimage:latest
