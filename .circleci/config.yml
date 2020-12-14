@@ -10,10 +10,10 @@ jobs:
           version: 19.03.13
       - run:
           name: build_image
-          command: docker build -t travis-ci.test .
+          command: docker build -t circle-ci.test .
       - run:
           name: run_tests_chrome
-          command: docker run --env BROWSER=chrome -it ashot90docker/myimage:latest
+          command: docker run --env BROWSER=chrome -it circle-ci.test
       - run:
           name: run_tests_ff
-          command: docker run --env BROWSER=firefox -it ashot90docker/myimage:latest
+          command: docker run --env BROWSER=firefox -it circle-ci.test
