@@ -1,29 +1,15 @@
-workflows:
-  version: 2.0
-  my-workflow:
-    jobs:
-      - build:
-          context:
-            - docker-hub-creds
+version: 2.1
 jobs:
   build:
-    docker:
-      - image: ashot90docker/myimage:latest
-        auth:
-          username: $DOCKER_HUB_USER
-          password: $DOCKER_HUB_PSW
     steps:
       - checkout
       - run:
-          name: build_and_push_image
-          command: docker build -t travis-ci.test . && echo "$DOCKER_HUB_PSW" | docker login -u $DOCKER_HUB_USER --password-stdin && docker push ashot90docker/myimage:latest
-      - run:
-          name: pull_image
-          command: docker pull ashot90docker/myimage:latest
+          name: build_image
+          command: docker build -t travis-ci.test .
       - run:
           name: run_tests_chrome
-          command: docker run --env BROWSER=chrome -it ashot90docker/myimage:latest
+          command: docker run --env BROWSER=chrome -it travis-ci.test
       - run:
           name: run_tests_ff
-          command: docker run --env BROWSER=firefox -it ashot90docker/myimage:latest
+          command: docker run --env BROWSER=firefox -it travis-ci.test
 
