@@ -5,15 +5,20 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
-      - run: |
-         if [ "${CIRCLE_BRANCH}" == "docker_image_update" ]; then
-            echo ash1990@hd | docker login -u ashot90docker --password-stdin &&
-            docker build -t ashot90docker/myimage:latest . &&
-            docker push ashot90docker/myimage:latest
-         fi
+      - run:
+          name: build_push_image
+          command: |
+             if [ "${CIRCLE_BRANCH}" == "docker_image_update" ]; then
+                echo $DOCKERHUB_PASSWORD | docker login -u $DOCKERHUB_USER --password-stdin
+                docker build -t ashot90docker/myimage:latest .
+                docker push ashot90docker/myimage:latest
+             fi
       - run:
           name: pull_image
-          command: docker pull ashot90docker/myimage:latest
+          command: |
+              if [ "${CIRCLE_BRANCH}" != "docker_image_update" ]; then
+                 docker pull ashot90docker/myimage:latest
+              fi
       - run:
           name: run_tests_chrome
           command: docker run --env BROWSER=chrome -it ashot90docker/myimage:latest
