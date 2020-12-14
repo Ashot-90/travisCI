@@ -5,4 +5,5 @@ before_install:
   - docker build -t travis-ci.test .
   
 script:
-  - docker run -it travis-ci.test
+  - docker run --env BROWSER=chrome -it travis-ci.test
+  - docker run --env BROWSER=firefox -it travis-ci.test
