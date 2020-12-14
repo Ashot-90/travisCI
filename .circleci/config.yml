@@ -5,8 +5,6 @@ jobs:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
-      - setup_remote_docker:
-          version: 19.03.13
       - run: |
          if [ "${CIRCLE_BRANCH}" == "docker_image_update" ]; then
             echo $DOCKER_HUB_PSW | docker login -u $DOCKER_HUB_USER --password-stdin
